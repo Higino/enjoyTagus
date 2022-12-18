@@ -35,7 +35,6 @@ def getMatchingSkipper(availableSkippers, licenceType, language, speciality, req
     else:
         return []
 
-# Funcao auxiliar para verificar se o driver fala a linguagem necessaria  
 def skipperSpeaksLanguage(spokenLanguages, requiredLanguage):
     """
     this function checks if a skipper speaks the required language

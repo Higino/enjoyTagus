@@ -24,8 +24,6 @@ def updateSkipper(skipperRecord, schedule):
 
 
 
-# Update the schedule. Give the matched skipper details, the request he was just assigned to and the existing schedules
-# this function returns the new schedule
 def getNewSchedule(skippersRecord, request, schedulesDict):
     """
     Update the schedule. Give the matched skipper details, the request he was just assigned to and the existing schedules

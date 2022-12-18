@@ -81,7 +81,6 @@ def init(date, time):
         const.CURRENT_RUN_DATE = date
 
 
-# Compute the next file names complete path according to requrements of file naming convention. 
 def getNextFileNames(skippersFile, scheduleFile):
     """
     Auxiliary function computes the next file names complete path according to requrements of file naming convention.

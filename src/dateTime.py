@@ -8,8 +8,6 @@ import constants as const
 # 60253 Hugo Silva 
 # 60284 Kaisheng Li
 
-
-
 def addHoursToDateTime(dateTime, hours):
     """
         Function adds a time to a datetime.It only adds hours not minutes
