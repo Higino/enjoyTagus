@@ -124,7 +124,17 @@ def readRequestsFile(fileName):
 
 
 def readSchedulesFile (fileName):
-    
+    """
+    this function reads a file with a list of schedules into a collection.
+
+    Requires: fileName is str with the name of a .txt file containing
+    a list of schedules organized as in the examples provided in
+    the general specification (omitted here for the sake of readability).
+
+    Ensures: list of lists where each list corresponds to a schedule listed in
+    the file fileName (with all the info pieces belonging to that schedule),
+    following the order provided in the lines of the file.
+    """
     inFile = removeHeader(fileName)
 
     scheduleList = []
