@@ -9,11 +9,11 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
             "args": [
                 "/Users/gino/Documents/Code/higino-gitbub/enjoyTagus/data/testSet2/skippers18h00.txt",
                 "/Users/gino/Documents/Code/higino-gitbub/enjoyTagus/data/testSet2/requests18h00.txt",
                 "/Users/gino/Documents/Code/higino-gitbub/enjoyTagus/data/testSet2/schedule18h00.txt"],
+            "program": "${file}",
             "console": "integratedTerminal",
             "justMyCode": true
         }

@@ -3,8 +3,14 @@ import constants as const
 import writingToFiles as writter
 import random
 import utils
-
 import scheduling
+#-*- coding: utf-8 -*-
+
+# 2022-2023 Programação 1 (LTI)
+# Grupo 221
+# 60253 Hugo Silva 
+# 60284 Kaisheng Li
+
 
 skippersDict = {}
 
@@ -20,7 +26,7 @@ def getMatchingSkipper(availableSkippers, licenceType, language, speciality, req
     matchedSkippersName = []
     for skipperName in availableSkippers:
         skipper = availableSkippers[skipperName]
-        if skipperSpeaksLanguage(skipper["languages"], language) and skipper["licenceType"] == licenceType and skipper["speciality"] == speciality and skipper["timeMax"] >= requestTime + skipper["accumulatedTime"]:
+        if skipperSpeaksLanguage(skipper["languages"], language) and skipper["licenceType"] == licenceType and skipper["speciality"] == speciality and float(skipper["timeMax"]) >= float(requestTime) + float(skipper["accumulatedTime"]):
             matchedSkippersName.append(skipperName)
     
     if len(matchedSkippersName) != 0:

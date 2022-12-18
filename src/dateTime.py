@@ -1,9 +1,13 @@
+from datetime import datetime
+from datetime import timedelta
+import constants as const
 #-*- coding: utf-8 -*-
 
 # 2022-2023 Programação 1 (LTI)
-# Grupo 546
-# 65000 Óscar Adalberto 
-# 65015 Miquelina Josefa
+# Grupo 221
+# 60253 Hugo Silva 
+# 60284 Kaisheng Li
+
 
 
 def addHoursToDateTime(dateTime, hours):
@@ -15,12 +19,21 @@ def addHoursToDateTime(dateTime, hours):
         Ensures: Returns a string with the new date and time in the format "dd:mm:yyyy|hh:mm"
         Extra function reason: We need to add hours to the date and time of the last run mainly so we can calculate when next travel is.
     """
-    date1 = (dateTime.split("|")[0], dateTime.split("|")[1])
-    time1 = (date1[1].split(":")[0], date1[1].split(":")[1])
+    time = dateTime.split("|")[1]
+    date = dateTime.split("|")[0]
+    newHour = hourToInt(time) + hours
     
-    newHour = hourToInt(time1[0]) + hours
-    newHourString = intToTime(newHour, int(time1[1]))
-    return date1[0] + "|" + newHourString 
+    returnDate = ""
+    # Compute current run date and time (which is 30 minutes after last run date unless it's a new day)
+    if( newHour >= const.END_OF_DAY_INT_HOUR ):
+        # This day is over we should start a new day based on todays date
+        newTime = datetime.strptime(date, '%d:%m:%Y') + timedelta(days=1)
+        returnDate = newTime.strftime("%d:%m:%Y") + "|" + const.START_OF_DAY_STRING_TIME
+    else:
+        # We are still in the same day
+        returnDate = date + "|" + intToTime(newHour, minutesToInt(time))
+    
+    return returnDate
 
 
 
@@ -68,6 +81,8 @@ def dateToInt(date):
     
     Requires: date in the format dd:mm:yyyy
     Ensures: returns the date as an integer
+    
+    Extra function reason: We need to convert a date to an integer to compare dates as we only have functions to convert times to integers
     """
     t=date.split(":")
     t1 = int(str(t[0]) + str(t[1]) + str(t[2]))

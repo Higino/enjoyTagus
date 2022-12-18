@@ -1,11 +1,12 @@
+import constants as const
+import dateTime as dt
+import random
 #-*- coding: utf-8 -*-
 
 # 2022-2023 Programação 1 (LTI)
-# Grupo 546
-# 65000 Óscar Adalberto 
-# 65015 Miquelina Josefa
-import constants as const
-import dateTime as dt
+# Grupo 221
+# 60253 Hugo Silva 
+# 60284 Kaisheng Li
 
 def getSortableSchedule (schedulesDict):
     """
@@ -25,8 +26,8 @@ def getSortableSchedule (schedulesDict):
     for scheduleKey in schedulesDict:
         scheduleDateInt = dt.dateToInt(schedulesDict[scheduleKey][const.SCHEDULE_DATE])
         lastRunDateInt  = dt.dateToInt(const.LAST_RUN_DATE)
-        scheduleTimeInt = dt.hourToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME]) + dt.minutesToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])
-        lastRunTimeInt  = dt.hourToInt(const.CURRENT_RUN_TIME) + dt.minutesToInt(const.CURRENT_RUN_TIME)
+        scheduleTimeInt = dt.hourToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])*60 + dt.minutesToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])
+        lastRunTimeInt  = dt.hourToInt(const.CURRENT_RUN_TIME)*60 + dt.minutesToInt(const.CURRENT_RUN_TIME)
        
         # If schedule is before last run date then we can remove from schedule, do nothing and continue to the next key
         if scheduleDateInt < lastRunDateInt:
@@ -43,7 +44,11 @@ def getSortableSchedule (schedulesDict):
                         schedulesDict[scheduleKey][const.SCHEDULE_CLIENT_NAME]
         
         # In order to sort by date and time we need to create a key that is the sum of the date and time                
-        key = dt.dateToInt(schedulesDict[scheduleKey][const.SCHEDULE_DATE]) + dt.hourToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])
+        # Multiply by 1000 to account for having multiple cruises at the same time
+        key = (dt.dateToInt(schedulesDict[scheduleKey][const.SCHEDULE_DATE]) + dt.hourToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])) *1000
+        
+        # If the key already exists we have to add a number between 0-100 so keys are not the same
+        key = key + random.randint(0,1000)
         sortedScheduleDict[key] = scheduleString
         
     

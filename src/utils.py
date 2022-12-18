@@ -5,7 +5,12 @@ from datetime import datetime
 from datetime import timedelta
 import re
 import dateTime as dt
+#-*- coding: utf-8 -*-
 
+# 2022-2023 Programação 1 (LTI)
+# Grupo 221
+# 60253 Hugo Silva 
+# 60284 Kaisheng Li
 
 def readCommandLineArguments():
     """

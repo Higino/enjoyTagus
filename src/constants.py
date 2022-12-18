@@ -21,6 +21,13 @@ NOT_ASSIGNED = "not-assigned"
 END_OF_DAY_INT_HOUR = 20
 START_OF_DAY_STRING_TIME = "08:00"
 
+#-*- coding: utf-8 -*-
+
+# 2022-2023 Programação 1 (LTI)
+# Grupo 221
+# 60253 Hugo Silva 
+# 60284 Kaisheng Li
+
 
 # Global variables that are immutable once set
 LAST_RUN_DATE=""
