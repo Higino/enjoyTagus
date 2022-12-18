@@ -14,6 +14,9 @@ def updateSkipper(skipperRecord, schedule):
     this function updates the skipper record with the new trip details
     Requires: skipperRecord is a dictionary with the skipper details and schedule is a list with the schedule details
     Ensures: a new skipper record is returned as a dictionary
+    
+    Extra function reason: We need to update the skipper record with the new trip details. Function given in skeleton code was to 
+    update all the skipper records with the new trip details. We only need to update one skipper record
    """
    # Add accumulated time to the skipper record
    skipperRecord["accumulatedTime"] += float(schedule[const.SCHEDULE_DURATION])
@@ -31,6 +34,7 @@ def getNewSchedule(skippersRecord, request, schedulesDict):
         this function returns the new schedule
     Requires: skippersRecord is a dictionary with the skipper details, request is a list with the request details and schedulesDict is a dictionary with the existing schedules
     Ensures: a new schedule is returned as a list
+    Extra function reason: We need to get the new schedule for the skipper.
     """
     # If no trip has been assigned to this skipper yet, then the new trip will be at the current run date and time
     dateTimeOfLastTrip = const.CURRENT_RUN_DATE+"|"+const.CURRENT_RUN_TIME
@@ -60,7 +64,7 @@ def getNewSchedule(skippersRecord, request, schedulesDict):
 
 
 def updateSkippers(skippers, schedule):
-    """we dont need this function because we just need to update one skipper"""
+    """We dont need this function because we just need to update one skipper not all of them"""
     return None
 
 

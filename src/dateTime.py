@@ -13,6 +13,7 @@ def addHoursToDateTime(dateTime, hours):
                   Unfortunately no validation is done on the dateTime format after adding the hours as it can be bigger than 24.
                   In that case the date will be wrong
         Ensures: Returns a string with the new date and time in the format "dd:mm:yyyy|hh:mm"
+        Extra function reason: We need to add hours to the date and time of the last run mainly so we can calculate when next travel is.
     """
     date1 = (dateTime.split("|")[0], dateTime.split("|")[1])
     time1 = (date1[1].split(":")[0], date1[1].split(":")[1])
@@ -31,6 +32,7 @@ def biggestDate(dateTime1, dateTime2):
     
     Ensures: When the dates are the same, the function returns one of them
     
+    Extra function reason: We need to compare dates and times to know which one is bigger
     """
     date1 = dateTime1.split("|")[0]
     date2 = dateTime2.split("|")[0]

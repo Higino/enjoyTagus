@@ -14,6 +14,8 @@ def getMatchingSkipper(availableSkippers, licenceType, language, speciality, req
 
     Requires: availableSkippers is a dictionary of skippers, licenceType is a str, language is a list of str, speciality is a str, requestTime is a float
     Ensures:  returns a str with the name of the skipper that matches the criteria or an empty list if no skipper matches the criteria
+    
+    Extra function: We created a function to match a skipper with the customer's request. This function is called in the assign function.
     """
     matchedSkippersName = []
     for skipperName in availableSkippers:
@@ -34,6 +36,8 @@ def skipperSpeaksLanguage(spokenLanguages, requiredLanguage):
 
     Requires: spokenLanguages is a list of str, requiredLanguage is a list of str
     Ensures:  returns True if the skipper speaks the required language or False if not
+    
+    Extra function reason: Utility function to check if a skipper speaks the required language. This function is called in the getMatchingSkipper function.
     """
     for l in spokenLanguages:
         for l1 in requiredLanguage:

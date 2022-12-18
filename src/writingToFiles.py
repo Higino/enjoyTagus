@@ -16,6 +16,9 @@ def getSortableSchedule (schedulesDict):
         {scheduleKey: {const.SCHEDULE_DATE: date, const.SCHEDULE_TIME: time, const.SCHEDULE_DURATION: duration, const.SCHEDULE_SKIPPER_NAME: skipperName, const.SCHEDULE_PRICE: price, const.SCHEDULE_CLIENT_NAME: clientName}} 
     Ensures: sortedScheduleDict is a dictionary with the following format:
         {scheduleKey: {const.SCHEDULE_DATE: date, const.SCHEDULE_TIME: time, const.SCHEDULE_DURATION: duration, const.SCHEDULE_SKIPPER_NAME: skipperName, const.SCHEDULE_PRICE: price, const.SCHEDULE_CLIENT_NAME: clientName}}
+        
+    Extra function reason: We need to have a structure that is easely sorted by datetime of each schedule. In order to do so we need to convert the date and time to an integer and use 
+    that as the key of the returned diccionary. Afterwars we can sort the dictionary by the key and get the sorted schedule.
     """
        
     sortedScheduleDict = {}
@@ -55,6 +58,8 @@ def createHeader(headerDate, headerTime, headerType = "Schedule"):
     Company: Tagus Sailing
     Day: headerDate
     Time: headerTime
+    
+    Extra function reason: We need to have a function that creates the header for the files. 
     """
     header = "Company:\nTagus Sailing\nDay: \n"+headerDate+"\nTime: \n"+headerTime+"\n"+headerType+":"
     return header
@@ -89,6 +94,8 @@ def writeSkippersFile(skippers, fileName, headerDate, headerTime):
         skippers = {skipperID:{"name":skipperName, "languages":skipperLanguages, "licenceType":skipperLicenceType, "tariff":skipperTariff, "speciality":skipperSpeciality, "timeMax":skipperTimeMax, "accumulatedTime":skipperAccumulatedTime, "dateLastCruise":skipperDateLastCruise, "timeLastCruise":skipperTimeLastCruise}}
     Ensures: A file with the name fileName is created with the skipper information in the following format:
         skipperName, skipperLanguages, skipperLicenceType, skipperTariff, skipperSpeciality, skipperTimeMax, skipperAccumulatedTime, (skipperDateLastCruise, skipperTimeLastCruise)
+        
+    Extra function reason: We need to have a function that creates the skippers file for the next run
     """
     
     header = createHeader(headerDate, headerTime, "Skippers")

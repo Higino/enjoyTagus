@@ -136,6 +136,8 @@ def readSchedulesFile (fileName):
     Ensures: list of lists where each list corresponds to a schedule listed in
     the file fileName (with all the info pieces belonging to that schedule),
     following the order provided in the lines of the file.
+    
+    Extra function reason: This function is extra because we need to read the schedules file
     """
     inFile = removeHeader(fileName)
 

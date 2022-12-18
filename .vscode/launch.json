@@ -6,10 +6,13 @@
     "configurations": [
         
         {
-            "name": "Python: Module",
+            "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "module": "enjoyTagus",
+            "program": "${file}",
+            "args": [
+                "/Users/gino/Documents/Code/higino-gitbub/enjoyTagus/data/testSet2/skippers18h00.txt"],
+            "console": "integratedTerminal",
             "justMyCode": true
         }
     ]
