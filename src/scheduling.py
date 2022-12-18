@@ -10,6 +10,11 @@ import dateTime as dt
 
 # Update the skipper. Given the macthed skypper details return a new updated skipper record based on the travel request
 def updateSkipper(skipperRecord, schedule):
+   """
+    this function updates the skipper record with the new trip details
+    Requires: skipperRecord is a dictionary with the skipper details and schedule is a list with the schedule details
+    Ensures: a new skipper record is returned as a dictionary
+   """
    # Add accumulated time to the skipper record
    skipperRecord["accumulatedTime"] += float(schedule[const.SCHEDULE_DURATION])
    # Add last trip from schedule to the skipper record
@@ -55,7 +60,7 @@ def getNewSchedule(skippersRecord, request, schedulesDict):
 
 
 def updateSkippers(skippers, schedule):
-    """wedas """
+    """we dont need this function because we just need to update one skipper"""
     return None
 
 

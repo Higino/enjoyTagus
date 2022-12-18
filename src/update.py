@@ -9,7 +9,12 @@ import scheduling
 skippersDict = {}
 
 def getMatchingSkipper(availableSkippers, licenceType, language, speciality, requestTime):
-#funcao para unir condutor e o cliente
+    """
+    function to unite drivers and customers
+
+    Requires: availableSkippers is a dictionary of skippers, licenceType is a str, language is a list of str, speciality is a str, requestTime is a float
+    Ensures:  returns a str with the name of the skipper that matches the criteria or an empty list if no skipper matches the criteria
+    """
     matchedSkippersName = []
     for skipperName in availableSkippers:
         skipper = availableSkippers[skipperName]
@@ -24,6 +29,12 @@ def getMatchingSkipper(availableSkippers, licenceType, language, speciality, req
 
 # Funcao auxiliar para verificar se o driver fala a linguagem necessaria  
 def skipperSpeaksLanguage(spokenLanguages, requiredLanguage):
+    """
+    this function checks if a skipper speaks the required language
+
+    Requires: spokenLanguages is a list of str, requiredLanguage is a list of str
+    Ensures:  returns True if the skipper speaks the required language or False if not
+    """
     for l in spokenLanguages:
         for l1 in requiredLanguage:
             if( l == l1):
