@@ -95,7 +95,18 @@ def assign(skippersFileName, scheduleFileName, requestsFileName):
         # Update the skipper. Given the macthed skypper details return a new updated skipper record based on the travel request
         scheduling.updateSkipper(skippersDict[matchedSkipper], newSchedule)
 
-    return (skippersDict, schedulesDict, notAssignedList)
+    
+    # Compute the next file names complete path according to requrements of file naming convention. 
+    # Next file names should be in the same directory structure and with the same name as redecessors as long as the time is increased by 30 minutes
+    (newSkippersFileName, newScheduleFileName, headerDate, headerTime) = utils.getNextFileNames(skippersFileName, scheduleFileName)
+    # Compute the new files names. Replace the time in the file name with the time 30 minutes after the last run time
+
+
+    # Save output files ( schedules, skippers) 
+    writter.writeScheduleFile(schedulesDict, notAssignedList, newScheduleFileName, headerDate, headerTime)
+    writter.writeSkippersFile(skippersDict, newSkippersFileName, headerDate, headerTime)
+
+    return
 
 """"
 MAIN PROGRAM
@@ -109,15 +120,4 @@ MAIN PROGRAM
 
 
 # Assign skippers to requests
-(newSkippers, newSchedules, notAssignedList) = assign(skippersFile, scheduleFile, requestsFile)
-
-# Compute the next file names complete path according to requrements of file naming convention. 
-# Next file names should be in the same directory structure and with the same name as redecessors as long as the time is increased by 30 minutes
-(newSkippersFileName, newScheduleFileName, headerDate, headerTime) = utils.getNextFileNames(skippersFile, scheduleFile)
-# Compute the new files names. Replace the time in the file name with the time 30 minutes after the last run time
-
-
-# Save output files (new schedules, new skippers) 
-# Save all schedules sorted by date provided that the not assigned List comes first in the file
-writter.writeScheduleFile(newSchedules, notAssignedList, newScheduleFileName, headerDate, headerTime)
-writter.writeSkippersFile(newSkippers, newSkippersFileName, headerDate, headerTime)
+assign(skippersFile, scheduleFile, requestsFile)
