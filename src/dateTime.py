@@ -61,7 +61,9 @@ def biggestDate(dateTime1, dateTime2):
  
 
 def dateToInt(date):
-    """"""
+    """Funcao extra.
+    
+    """
     t=date.split(":")
     t1 = int(str(t[0]) + str(t[1]) + str(t[2]))
     return t1    
