@@ -22,6 +22,12 @@ END_OF_DAY_INT_HOUR = 20
 START_OF_DAY_STRING_TIME = "08:00"
 
 
+# Global variables that are immutable once set
+LAST_RUN_DATE=""
+LAST_RUN_TIME=""
+CURRENT_RUN_DATE=""
+CURRENT_RUN_TIME=""
+
 # In a file:
 # Number of header's lines
 NUM_HEADER_LINES = 7

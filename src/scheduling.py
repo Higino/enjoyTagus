@@ -6,7 +6,7 @@
 # 65015 Miquelina Josefa
 import constants as const
 import dateTime as dt
-import globals
+
 
 # Update the skipper. Given the macthed skypper details return a new updated skipper record based on the travel request
 def updateSkipper(skipperRecord, schedule):
@@ -27,12 +27,12 @@ def getNewSchedule(skippersRecord, request, schedulesDict):
         
     """
     # If no trip has been assigned to this skipper yet, then the new trip will be at the current run date and time
-    dateTimeOfLastTrip = globals.CURRENT_RUN_DATE+"|"+globals.CURRENT_RUN_TIME
+    dateTimeOfLastTrip = const.CURRENT_RUN_DATE+"|"+const.CURRENT_RUN_TIME
     for key in schedulesDict.keys():
         if skippersRecord["name"] == key.split("-")[1]: 
             if dt.biggestDate(key.split("-")[0], dateTimeOfLastTrip) != dateTimeOfLastTrip:
                 dateTimeOfLastTrip = key.split("-")[0]
-    if( dateTimeOfLastTrip == globals.CURRENT_RUN_DATE+"|"+globals.CURRENT_RUN_TIME):
+    if( dateTimeOfLastTrip == const.CURRENT_RUN_DATE+"|"+const.CURRENT_RUN_TIME):
         # No trip has been assigned to this skipper yet, create the trip in the schedule assigning it a key
         schedulesDict[dateTimeOfLastTrip+"-"+skippersRecord["name"]] = []
         newTripDateTime = dateTimeOfLastTrip

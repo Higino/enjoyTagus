@@ -1,11 +1,9 @@
 import sys
 import os
 import constants as const
-import globals
 from datetime import datetime
 from datetime import timedelta
 import re
-import globals
 import dateTime as dt
 
 
@@ -47,42 +45,42 @@ def init(date, time):
     """
     This function initialises the program global variables CURRENT_RUN_DATETIME, LAST_RUN_DATETIME used throughout the program
     """
-    # If globals are not set lets set them according to dates and times given as parameters
-    if globals.CURRENT_RUN_DATE != "" or globals.LAST_RUN_DATE != "":
+    # If const are not set lets set them according to dates and times given as parameters
+    if const.CURRENT_RUN_DATE != "" or const.LAST_RUN_DATE != "":
         # dates already set, we should keep them
         return 
     
     # Last run date and time are given as parameters
-    globals.LAST_RUN_DATE = date
-    globals.LAST_RUN_TIME = time
+    const.LAST_RUN_DATE = date
+    const.LAST_RUN_TIME = time
     
     # Compute current run date and time (which is 30 minutes after last run date unless it's a new day)
     if( dt.hourToInt(time) >= const.END_OF_DAY_INT_HOUR ):
         # This day is over we should start a new day based on todays date
         newTime = datetime.strptime(date, '%d:%m:%Y') + timedelta(days=1)
-        globals.CURRENT_RUN_DATE = newTime.strftime("%d:%m:%Y")
-        globals.CURRENT_RUN_TIME = const.START_OF_DAY_STRING_TIME
+        const.CURRENT_RUN_DATE = newTime.strftime("%d:%m:%Y")
+        const.CURRENT_RUN_TIME = const.START_OF_DAY_STRING_TIME
     else:
-        currentMinute = int(globals.LAST_RUN_TIME.split(":")[1])
-        currentHour = int(globals.LAST_RUN_TIME.split(":")[0])
+        currentMinute = int(const.LAST_RUN_TIME.split(":")[1])
+        currentHour = int(const.LAST_RUN_TIME.split(":")[0])
         if currentMinute >= 30 and currentMinute < 60:
-            globals.CURRENT_RUN_TIME = dt.intToTime(currentHour+1, 0)
+            const.CURRENT_RUN_TIME = dt.intToTime(currentHour+1, 0)
         else:
-            globals.CURRENT_RUN_TIME = dt.intToTime(currentHour, 30)
+            const.CURRENT_RUN_TIME = dt.intToTime(currentHour, 30)
         # Since we are not in a new day, current run date is the same as last run date
-        globals.CURRENT_RUN_DATE = date
+        const.CURRENT_RUN_DATE = date
 
 
 # Compute the next file names complete path according to requrements of file naming convention. 
 # Next file names should be in the same directory structure and with the same name as redecessors as long as the time is increased by 30 minutes
 # Returns the new computed file names and the dates that should go to the header of each file
 def getNextFileNames(skippersFile, scheduleFile):
-    newFilesHour = dt.hourToInt(globals.LAST_RUN_TIME)
+    newFilesHour = dt.hourToInt(const.LAST_RUN_TIME)
     newFilesMinutes = 0
-    headerDate = globals.LAST_RUN_DATE
-    if( globals.LAST_RUN_TIME.split(":")[1] == "30"):
+    headerDate = const.LAST_RUN_DATE
+    if( const.LAST_RUN_TIME.split(":")[1] == "30"):
         newFilesMinutes = 0
-        newFilesHour = dt.hourToInt(globals.LAST_RUN_TIME) + 1
+        newFilesHour = dt.hourToInt(const.LAST_RUN_TIME) + 1
     else:
         newFilesMinutes = 30
     

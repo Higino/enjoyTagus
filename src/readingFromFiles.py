@@ -1,6 +1,5 @@
 import constants as const
 import sys
-import globals
 import utils
 #-*- coding: utf-8 -*-
 
@@ -41,9 +40,9 @@ def removeHeader (fileName):
     utils.init(headerDate, headerTime.replace("h", ":"))
     
     # The header date must match the date of last RUN. 
-    if( str(headerDate) != str(globals.LAST_RUN_DATE) or str(headerTime) != str(globals.LAST_RUN_TIME).replace(":", "h")):
+    if( str(headerDate) != str(const.LAST_RUN_DATE) or str(headerTime) != str(const.LAST_RUN_TIME).replace(":", "h")):
         print ("Error: File " + fileName + " is not valid. The date of the file "+headerDate+", "+headerTime+" does not match the last run date " + 
-                globals.LAST_RUN_DATE + ", " + globals.LAST_RUN_TIME.replace(":", "h") + ".")
+                const.LAST_RUN_DATE + ", " + const.LAST_RUN_TIME.replace(":", "h") + ".")
         file.close()
         sys.exit(-1)    
     

@@ -5,9 +5,7 @@
 # 65000 Óscar Adalberto 
 # 65015 Miquelina Josefa
 import constants as const
-import globals
 import dateTime as dt
-from operator import itemgetter
 
 def getSortableSchedule (schedulesDict):
     """Gets a schedule that can be sorted by the key. Key is an integer representing the datetime in int format.
@@ -16,9 +14,9 @@ def getSortableSchedule (schedulesDict):
     sortedScheduleDict = {}
     for scheduleKey in schedulesDict:
         scheduleDateInt = dt.dateToInt(schedulesDict[scheduleKey][const.SCHEDULE_DATE])
-        lastRunDateInt  = dt.dateToInt(globals.LAST_RUN_DATE)
+        lastRunDateInt  = dt.dateToInt(const.LAST_RUN_DATE)
         scheduleTimeInt = dt.hourToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME]) + dt.minutesToInt(schedulesDict[scheduleKey][const.SCHEDULE_TIME])
-        lastRunTimeInt  = dt.hourToInt(globals.CURRENT_RUN_TIME) + dt.minutesToInt(globals.CURRENT_RUN_TIME)
+        lastRunTimeInt  = dt.hourToInt(const.CURRENT_RUN_TIME) + dt.minutesToInt(const.CURRENT_RUN_TIME)
        
         # If schedule is before last run date then we can remove from schedule, do nothing and continue to the next key
         if scheduleDateInt < lastRunDateInt:

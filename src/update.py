@@ -2,7 +2,6 @@ import readingFromFiles
 import constants as const
 import writingToFiles as writter
 import random
-import globals
 import utils
 
 import scheduling
@@ -70,7 +69,7 @@ def assign(skippersFileName, scheduleFileName, requestsFileName):
                                                             request[const.REQUEST_SPECIALITY_TYPE], 
                                                             float(request[const.REQUEST_CRUISE_TIME]))
         if matchedSkipper == []:
-            notAssignedList.append(globals.CURRENT_RUN_DATE + ", "+const.NOT_ASSIGNED+", " + request[const.REQUEST_CLIENT_NAME_IDX])
+            notAssignedList.append(const.CURRENT_RUN_DATE + ", "+const.NOT_ASSIGNED+", " + request[const.REQUEST_CLIENT_NAME_IDX])
             continue
 
         # Update the schedule. Give the matched skipper details, the request he was just assigned to and the existing schedules
