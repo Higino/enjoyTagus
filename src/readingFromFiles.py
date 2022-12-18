@@ -2,7 +2,7 @@ import constants as const
 import sys
 import utils
 #-*- coding: utf-8 -*-
-
+        # TODO: Update this header
 # 2022-2023 Programação 1 (LTI)
 # Grupo 546
 # 65000 Óscar Adalberto 
@@ -16,6 +16,8 @@ def removeHeader (fileName):
 
     Requires: fileName is a string with the name of the file
     Ensures: a list with the content of the file without the header
+    Extra function reason: We need to remove the header of the file to be able to read the content of the file and 
+    reuse the code for all the files
     """
     file = open(fileName, "r")
     filecontent = file.readlines()
