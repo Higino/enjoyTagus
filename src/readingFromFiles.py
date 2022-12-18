@@ -41,16 +41,11 @@ def removeHeader (fileName):
     utils.init(headerDate, headerTime.replace("h", ":"))
     
     # The header date must match the date of last RUN. 
-    # If last run is empty then safe to assume last run date is the same as the header date of this file
-    if( globals.LAST_RUN_DATE == "" ):
-        globals.LAST_RUN_DATE = headerDate
-        globals.LAST_RUN_TIME = headerTime.replace("h", ":") # Convert back to the time standard format
-    else:
-        if( headerDate != globals.LAST_RUN_DATE or headerTime != globals.LAST_RUN_TIME.replace(":", "h")):
-            print ("Error: File " + fileName + " is not valid. The date of the file does not match the last run date " + 
-                   globals.LAST_RUN_DATE + ", " + globals.LAST_RUN_TIME + ".")
-            file.close()
-            sys.exit(-1)    
+    if( str(headerDate) != str(globals.LAST_RUN_DATE) or str(headerTime) != str(globals.LAST_RUN_TIME).replace(":", "h")):
+        print ("Error: File " + fileName + " is not valid. The date of the file "+headerDate+", "+headerTime+" does not match the last run date " + 
+                globals.LAST_RUN_DATE + ", " + globals.LAST_RUN_TIME.replace(":", "h") + ".")
+        file.close()
+        sys.exit(-1)    
     
     # Header validated we can now remove the header    
     for x in range(const.NUM_HEADER_LINES):

@@ -26,10 +26,14 @@ def readCommandLineArguments():
           [2] - is schedulefile
         If the files do not conform to the file naming standard then the program needs to stop with an error message
     """
+    if( len(sys.argv) != 4 ):
+        print("Error: Incorrect number of arguments. The program should be executed as: python3 update.py skypperfilepath requestsfilepath schedulefilepath")
+        sys.exit(-1)
+
     skypperfile = sys.argv[1]
     requestsfile = sys.argv[2]
     schedulefile = sys.argv[3]
-    
+                 
     for fileArgIndex in range(1, 4):    
         # Check whether a path pointing to a file
         file = sys.argv[fileArgIndex]
