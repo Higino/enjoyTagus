@@ -11,6 +11,12 @@ import utils
 
 
 def removeHeader (fileName):
+    """
+    this function removes the header of a file
+
+    Requires: fileName is a string with the name of the file
+    Ensures: a list with the content of the file without the header
+    """
     file = open(fileName, "r")
     filecontent = file.readlines()
 
@@ -95,6 +101,14 @@ def readSkippersFile(fileName):
 def readRequestsFile(fileName):
     """
     Reads a file with a list of requested cruises with a given file name into a collection.
+
+    Requires: fileName is str with the name of a .txt file containing
+    a list of requested cruises organized as in the examples provided in
+    the general specification (omitted here for the sake of readability).
+    
+    Ensures: list of lists where each list corresponds to a requested cruise listed in
+    the file fileName (with all the info pieces belonging to that cruise),
+    following the order provided in the lines of the file.
 
     
     """

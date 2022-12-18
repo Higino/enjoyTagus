@@ -8,8 +8,15 @@ import constants as const
 import dateTime as dt
 
 def getSortableSchedule (schedulesDict):
-    """Gets a schedule that can be sorted by the key. Key is an integer representing the datetime in int format.
-       Schedules older than the last run date and time are removed from the schedule"""
+    """
+    Gets a schedule that can be sorted by the key. Key is an integer representing the datetime in int format.
+    Schedules older than the last run date and time are removed from the schedule
+
+    Requires: schedulesDict is a dictionary with the following format:
+        {scheduleKey: {const.SCHEDULE_DATE: date, const.SCHEDULE_TIME: time, const.SCHEDULE_DURATION: duration, const.SCHEDULE_SKIPPER_NAME: skipperName, const.SCHEDULE_PRICE: price, const.SCHEDULE_CLIENT_NAME: clientName}} 
+    Ensures: sortedScheduleDict is a dictionary with the following format:
+        {scheduleKey: {const.SCHEDULE_DATE: date, const.SCHEDULE_TIME: time, const.SCHEDULE_DURATION: duration, const.SCHEDULE_SKIPPER_NAME: skipperName, const.SCHEDULE_PRICE: price, const.SCHEDULE_CLIENT_NAME: clientName}}
+    """
        
     sortedScheduleDict = {}
     for scheduleKey in schedulesDict:
@@ -40,14 +47,27 @@ def getSortableSchedule (schedulesDict):
     return sortedScheduleDict
     
 def createHeader(headerDate, headerTime, headerType = "Schedule"):
-    """Create a header for a file of type headerType which by default is Schedule, based on the filename and the header date and time 
+    """
+    Create a header for a file of type headerType which by default is Schedule, based on the filename and the header date and time 
 
+    Requires: headerDate and headerTime are strings in the format dd/mm/yyyy and hh:mm respectively
+    Ensures: A string with the following format:
+    Company: Tagus Sailing
+    Day: headerDate
+    Time: headerTime
     """
     header = "Company:\nTagus Sailing\nDay: \n"+headerDate+"\nTime: \n"+headerTime+"\n"+headerType+":"
     return header
 
 def writeScheduleFile(schedule, notAssignedList, filename, headerTime, headerDate):
-    """ Save all schedules sorted by date provided that the not assigned List comes first in the file """
+    """ 
+    Save all schedules sorted by date provided that the not assigned List comes first in the file
+    
+    Requires: schedule is a dictionary with the following structure: 
+        schedule = {scheduleKey:{"date":scheduleDate, "time":scheduleTime, "duration":scheduleDuration, "skipperName":scheduleSkipperName, "price":schedulePrice, "clientName":scheduleClientName}}
+    Ensures: A file with the name filename is created with the schedule information in the following format:
+        scheduleDate, scheduleTime, scheduleDuration, scheduleSkipperName, schedulePrice, scheduleClientName
+    """
     header = createHeader(headerDate, headerTime, "Schedule")
     file = open(filename, "w")
     file.write(header)
@@ -62,7 +82,14 @@ def writeScheduleFile(schedule, notAssignedList, filename, headerTime, headerDat
 
 
 def writeSkippersFile(skippers, fileName, headerDate, headerTime):
-    """ Save all skipper information in a file """
+    """ 
+    Save all skipper information in a file 
+    
+    Requires: skippers is a dictionary with the following structure:
+        skippers = {skipperID:{"name":skipperName, "languages":skipperLanguages, "licenceType":skipperLicenceType, "tariff":skipperTariff, "speciality":skipperSpeciality, "timeMax":skipperTimeMax, "accumulatedTime":skipperAccumulatedTime, "dateLastCruise":skipperDateLastCruise, "timeLastCruise":skipperTimeLastCruise}}
+    Ensures: A file with the name fileName is created with the skipper information in the following format:
+        skipperName, skipperLanguages, skipperLicenceType, skipperTariff, skipperSpeciality, skipperTimeMax, skipperAccumulatedTime, (skipperDateLastCruise, skipperTimeLastCruise)
+    """
     
     header = createHeader(headerDate, headerTime, "Skippers")
     file = open(fileName, "w")

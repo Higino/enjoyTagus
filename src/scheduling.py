@@ -22,9 +22,10 @@ def updateSkipper(skipperRecord, schedule):
 # this function returns the new schedule
 def getNewSchedule(skippersRecord, request, schedulesDict):
     """
-        Update the schedule. Give the matched skipper details, the request he was just assigned to and the existing schedules
+    Update the schedule. Give the matched skipper details, the request he was just assigned to and the existing schedules
         this function returns the new schedule
-        
+    Requires: skippersRecord is a dictionary with the skipper details, request is a list with the request details and schedulesDict is a dictionary with the existing schedules
+    Ensures: a new schedule is returned as a list
     """
     # If no trip has been assigned to this skipper yet, then the new trip will be at the current run date and time
     dateTimeOfLastTrip = const.CURRENT_RUN_DATE+"|"+const.CURRENT_RUN_TIME

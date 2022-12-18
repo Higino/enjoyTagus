@@ -44,6 +44,9 @@ def readCommandLineArguments():
 def init(date, time):
     """
     This function initialises the program global variables CURRENT_RUN_DATETIME, LAST_RUN_DATETIME used throughout the program
+
+    Requires: date and time are strings in the format "dd:mm:yyyy" and "hh:mm" respectively
+    Ensures: CURRENT_RUN_DATETIME and LAST_RUN_DATETIME are set to the correct values
     """
     # If const are not set lets set them according to dates and times given as parameters
     if const.CURRENT_RUN_DATE != "" or const.LAST_RUN_DATE != "":
@@ -75,6 +78,13 @@ def init(date, time):
 # Next file names should be in the same directory structure and with the same name as redecessors as long as the time is increased by 30 minutes
 # Returns the new computed file names and the dates that should go to the header of each file
 def getNextFileNames(skippersFile, scheduleFile):
+    """
+    this function computes the next file names complete path according to requrements of file naming convention.
+
+    Requires: skippersFile and scheduleFile are the full path of the files
+    Ensures: Next file names should be in the same directory structure and with the same name as redecessors as long as the time is increased by 30 minutes
+    """
+    
     newFilesHour = dt.hourToInt(const.LAST_RUN_TIME)
     newFilesMinutes = 0
     headerDate = const.LAST_RUN_DATE

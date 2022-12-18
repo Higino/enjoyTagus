@@ -12,7 +12,7 @@ def addHoursToDateTime(dateTime, hours):
         Requires: DateTime in the format "dd:mm:yyyy|hh:mm" and hour is the integer representing the number of hours to add. 
                   Unfortunately no validation is done on the dateTime format after adding the hours as it can be bigger than 24.
                   In that case the date will be wrong
-        
+        Ensures: Returns a string with the new date and time in the format "dd:mm:yyyy|hh:mm"
     """
     date1 = (dateTime.split("|")[0], dateTime.split("|")[1])
     time1 = (date1[1].split(":")[0], date1[1].split(":")[1])
@@ -26,8 +26,8 @@ def addHoursToDateTime(dateTime, hours):
 def biggestDate(dateTime1, dateTime2):
     """
     This function takes two dates and times and returns the biggest one.
-    Requires: The dates and times to be in the format: dd:mm:yyyy|hh:mm
     
+    Requires: The dates and times to be in the format: dd:mm:yyyy|hh:mm
     
     Ensures: When the dates are the same, the function returns one of them
     
@@ -59,10 +59,13 @@ def biggestDate(dateTime1, dateTime2):
         else:
             return dateTime2
  
-
+#funcao extra
 def dateToInt(date):
-    """Funcao extra.
+    """
+    this function takes a date in the format dd:mm:yyyy and returns the date as an integer
     
+    Requires: date in the format dd:mm:yyyy
+    Ensures: returns the date as an integer
     """
     t=date.split(":")
     t1 = int(str(t[0]) + str(t[1]) + str(t[2]))
@@ -70,7 +73,9 @@ def dateToInt(date):
     
 def hourToInt(time):
     """
-
+    this function takes a time in the format hh:mm and returns the hour as an integer
+    Requires: time in the format hh:mm
+    Ensures: returns the hour as an integer
     """
     t = time.split(":")
     return int(t[0])
@@ -79,7 +84,9 @@ def hourToInt(time):
 
 def minutesToInt(time):
     """
-
+    this function takes a time in the format hh:mm and returns the minutes as an integer
+    Requires: time in the format hh:mm
+    Ensures: returns the minutes as an integer
     """
     t = time.split(":")
     return int(t[1])    
@@ -87,7 +94,9 @@ def minutesToInt(time):
 
 def intToTime(hour, minutes):
     """
-
+    this function takes an hour and minutes and returns a string with the time in the format hh:mm
+    Requires: hour and minutes as integers
+    Ensures: returns a string with the time in the format hh:mm
     """
     h = str(hour)
     m = str(minutes)
